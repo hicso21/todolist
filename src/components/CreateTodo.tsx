@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { addTodo } from "../redux/todos/todosSlice";
+import { useAppDispatch } from "../state/hooks";
+import { addTodo, addTodoDB } from "../state/todos/todosSlice";
 
 export const CreateTodo: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -9,6 +9,7 @@ export const CreateTodo: React.FC = () => {
   const handleSubmit = (event: React.KeyboardEvent<HTMLFormElement>): void => {
     event.preventDefault();
     dispatch(addTodo({ title: inputValue }))
+    dispatch(addTodoDB({ title: inputValue }))
     setInputValue('')
   }
 

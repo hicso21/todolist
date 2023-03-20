@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useAppDispatch } from "../redux/hooks"
-import { updateTodo } from "../redux/todos/todosSlice"
+import { useAppDispatch } from "../state/hooks"
+import { updateTodo, updateTodoDB } from "../state/todos/todosSlice"
 import { type TodoId, type Todo as TodoType, TodoCompletedForAction } from "../types"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -25,6 +25,7 @@ export const Todo: React.FC<Props> = ({id, title, completed, onRemoveTodo, onTog
   const handleSubmit = (event: React.KeyboardEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(updateTodo({id, title: input}))
+    dispatch(updateTodoDB({ id, title: input, completed: false}))
     setChangeText(false)
   }
 

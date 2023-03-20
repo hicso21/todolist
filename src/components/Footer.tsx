@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../redux/hooks"
-import { removeCompletedTodo } from "../redux/todos/todosSlice"
+import { useAppDispatch } from "../state/hooks"
+import { removeCompletedTodo, removeCompletedTodoDB } from "../state/todos/todosSlice"
 import { FilterValue } from "../types"
 import { Filters } from "./Filters"
 
@@ -34,7 +34,10 @@ export const Footer: React.FC<Props> = ({
         completedCount > 0 && (
             <button
               className='clear-completed'
-              onClick={() => {dispatch(removeCompletedTodo())}}
+              onClick={() => {
+                dispatch(removeCompletedTodo())
+                dispatch(removeCompletedTodoDB())
+              }}
             >
               Borra completados
             </button>
