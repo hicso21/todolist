@@ -80,7 +80,7 @@ export const todosSlice = createSlice({
   reducers: {
     addTodo: (state, action: PayloadAction<TodoTitle>): void => {
       state.push({
-        id: current(state)[current(state).length-1].id + 1,
+        id: state[state.length-1].id ? state[state.length-1].id + 1 : Math.random()*1000,
         completed: false,
         title: action.payload.title
       })
